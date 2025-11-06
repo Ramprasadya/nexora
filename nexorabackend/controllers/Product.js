@@ -80,16 +80,21 @@ const TotalCartAmount = async (req, res) => {
 };
 
 const CartCheckout = async (req, res) => {
-  const { cartItems } = req.body;
+  const { Orders } = req.body;
+  // console.log(Orders);
+  
   try {
     const products = await ProductModel.find({});
 
     let total = 0;
-    for (const item of cartItems) {
-      const product = products.find((p) => p.id === item.productId);
+    for (const item of Orders?.CartItems) {
+      const product = products.find((p) => p._id.toString() === item._id);
+      // console.log(product);
+      
       if (product) total += product.price * item.quantity;
     }
     const receipt = {
+      detail:Orders.Detail,
       total,
       timestamp: new Date().toISOString(),
     };

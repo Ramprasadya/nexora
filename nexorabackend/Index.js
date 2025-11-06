@@ -4,9 +4,10 @@ const app = express()
 const port = 4000
 import { connectDB } from './db/db.js'
 import ProductRoute from './routes/ProductRoute.js'
+import cors from 'cors'
 connectDB()
 app.use(express.json())
-
+app.use(cors())
 app.get('/debug', (req, res) => {
   res.send('Backend is running')
 })
