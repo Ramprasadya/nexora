@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
+import { Trash2 } from "lucide-react";
 
 const Cart = () => {
-  const { productData, currency, cartTotal, DeleteFromCart, navigate} = useContext(ShopContext);
+  const { productData, currency, cartTotal, DeleteFromCart, navigate,  UpdateQuantity} = useContext(ShopContext);
   let CartItem = productData.filter((item:any) => item.quantity > 0);
   
  const deliveryFee = 10;
@@ -26,9 +27,9 @@ const Cart = () => {
               </p>
             </div>
             <div>
-              Quantity: {item.quantity}
+             <input onChange={(e)=>e.target.value === '' || e.target.value === '0' ? null : UpdateQuantity(item._id,Number(e.target.value)) } className="border max-w-10 sm:max-w-20 px-1 sm:py-2 py-1" type="number" min={1} defaultValue={item.quantity} />
             </div>
-            <button onClick={()=> DeleteFromCart(item._id)} className="py-2 px-3 bg-violet-600 text-white cursor-pointer" >Delete</button>
+            <Trash2 onClick={()=> DeleteFromCart(item._id)} className=" h-6 w-6 mr-3 text-black cursor-pointer" />
           </div>
         );
       })}

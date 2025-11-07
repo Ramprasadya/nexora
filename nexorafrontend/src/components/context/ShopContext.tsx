@@ -73,6 +73,16 @@ const ShopContextProvider = (props: any) => {
     }
   }
 
+  const UpdateQuantity=async( ProductId:any, quantity:any)=>{
+     try {
+       const resposne = await axios.post(`${ServerUrl}/api/update`, {ProductId, quantity})
+       console.log(resposne.data.message);
+       setUpdate((prev) => !prev);
+     } catch (error) {
+       console.log(error);
+     }
+  }
+
   useEffect(() => {
     GetCartTotal();
   }, [cartTotal, update]);
@@ -86,7 +96,8 @@ const ShopContextProvider = (props: any) => {
     DeleteFromCart,
     CheckoutCart,
     reciept,
-    deliveryFee
+    deliveryFee,
+    UpdateQuantity
   };
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>

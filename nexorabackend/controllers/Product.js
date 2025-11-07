@@ -82,7 +82,7 @@ const TotalCartAmount = async (req, res) => {
 const CartCheckout = async (req, res) => {
   const { Orders } = req.body;
   // console.log(Orders);
-  
+
   try {
     const products = await ProductModel.find({});
 
@@ -90,16 +90,31 @@ const CartCheckout = async (req, res) => {
     for (const item of Orders?.CartItems) {
       const product = products.find((p) => p._id.toString() === item._id);
       // console.log(product);
-      
+
       if (product) total += product.price * item.quantity;
     }
     const receipt = {
-      detail:Orders.Detail,
+      detail: Orders.Detail,
       total,
       timestamp: new Date().toISOString(),
     };
 
     res.json({ success: true, receipt });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const CartUpdate = async (req, res) => {
+  const { ProductId, quantity } = req.body;
+  try {
+    const ProductData = await ProductModel.find({ _id: ProductId });
+    ProductData.quantity = quantity;
+    await ProductModel.findByIdAndUpdate(ProductId, {
+      quantity: ProductData.quantity,
+    });
+    res.json({ success: true, message: "Cart Count Updated......" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: error.message });
@@ -113,4 +128,5 @@ export {
   RemoveFromCart,
   TotalCartAmount,
   CartCheckout,
+  CartUpdate,
 };

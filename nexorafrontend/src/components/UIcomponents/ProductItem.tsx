@@ -28,7 +28,7 @@ const ProductItem = ({id,name,price}:myProps) => {
       AddToCart(id);
       navigate("/cart");
     }}
-    className="w-full mt-5 py-2 bg-violet-600 text-white font-medium rounded-lg hover:bg-violet-700 active:scale-[0.98] transition-all duration-200"
+    className="w-full mt-5 cursor-pointer py-2 bg-violet-600 text-white font-medium rounded-lg hover:bg-violet-700 active:scale-[0.98] transition-all duration-200"
   >
     Add To Cart
   </button>
