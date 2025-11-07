@@ -26,13 +26,13 @@ const Navbar = () => {
           <p>Contact</p>
           <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden ' />
         </div>
+      </ul>
       <div className="flex items-center gap-6">
         <Link to="/cart" className="relative" >
           <ShoppingCart className="w-7 min-w-7" />
         </Link>
         <Menu onClick={() => setvisible(true)} className=" w-5 cursor-pointer sm:hidden" />
       </div>
-      </ul>
       {/* Mobile Navabr  */}
       <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`} >
         <div className="flex flex-col text-gray-700" >

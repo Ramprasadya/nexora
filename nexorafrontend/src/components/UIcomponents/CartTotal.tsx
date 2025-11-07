@@ -5,7 +5,7 @@ const CartTotal = () => {
     const {deliveryFee, currency, cartTotal} = useContext(ShopContext)
   return (
     <div className="flex justify-end w-full" >
-        <div className="flex flex-col gap-2 mt-4 text-sm sm:text-[16px] w-full" >
+        <div className="flex flex-col gap-2 mt-2 sm:mt-4 text-sm sm:text-[16px] w-full" >
             <h1 className="my-2 font-bold" >Cart Totals</h1>
            <div className="flex justify-between" >
              <p>Subtotal</p>

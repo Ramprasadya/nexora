@@ -36,7 +36,7 @@ const Cart = () => {
         CartItem.length > 0 && (
 
       <div className="flex justify-end" >
-        <div className="flex flex-col gap-2 mt-4 text-sm sm:text-[16px] w-1/3" >
+        <div className="flex flex-col gap-2 mt-4 text-sm sm:text-[16px] w-1/2 md:w-1/3" >
             <h1 className="my-2 font-bold" >Cart Totals</h1>
            <div className="flex justify-between" >
              <p>Subtotal</p>
